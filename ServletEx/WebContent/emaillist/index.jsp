@@ -65,20 +65,5 @@
 	}
 	%>
 	
-	<!-- 정보 테이블 -->
-	<table border=1>
-		<tr>
-			<th>성</th>
-			<td></td>
-		</tr>
-		<tr>
-			<th>이름</th>
-			<td></td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td></td>
-		</tr>
-	</table>
 </body>
 </html>
