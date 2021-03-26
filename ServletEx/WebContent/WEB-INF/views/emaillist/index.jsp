@@ -1,7 +1,5 @@
 <%@page import="com.bit.servlet.dao.EmailVo"%>
 <%@page import="java.util.List"%>
-<%@page import="com.bit.servlet.dao.EmailDaoOrcImpl"%>
-<%@page import="com.bit.servlet.dao.EmailDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,15 +10,15 @@
 </head>
 <body>
 	<h1>메일링 리스트(Model 2)</h1>
+	<%	//	컨트롤러에서 속성으로 추가해준 리스트 객체를 꺼내옵니다.
+	//	다운캐스팅 필요
+	List<EmailVo> list = (List<EmailVo>)request.getAttribute("list");
 	
-	<%	// DAO 불러오기
-	EmailDao dao = new EmailDaoOrcImpl();
-	// 목록 받아오기
-	List<EmailVo> list = dao.getList();
-	
-	for(EmailVo vo: list){
-		// 출력 %>
-			<!-- 정보 테이블 -->
+	//	루프
+	for (EmailVo vo: list) {
+	%>
+
+		<!-- 정보 테이블 -->
 	<table border=1>
 		<tr>
 			<th>성</th>
@@ -37,22 +35,24 @@
 		<!-- 삭제 버튼 -->
 		<tr>
 			<td colspan="2">
-				<form action="delete.jsp">
+				<form action="<%= request.getContextPath() %>/el">
+					<input type="hidden" name="a" value="delete" />
 					<!-- 게시물의 no(PK) -->
-					<input type="hidden" name="no" value="<%=vo.getNo() %>"/>
+					<input type="hidden" name="no" value="<%= vo.getNo() %>"/>
 					<!-- 전송 버튼 -->
 					<input type="submit" value="삭제" />
 				</form>
+				<!-- TODO: 수정 기능을 구현해보기 -->
 			</td>
 		</tr>
-	</table>
-		
-		<% 
+	</table>		
+	
+	<%
 	}
 	%>
 	<p>
-		<a href="form.jsp">메일링 리스트 가입</a>
+		<a href="<%= request.getContextPath() %>/el?a=form">메일링 리스트 가입(MVC)</a>
 	</p>
-
+	
 </body>
 </html>
