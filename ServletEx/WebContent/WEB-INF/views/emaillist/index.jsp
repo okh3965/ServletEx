@@ -11,7 +11,7 @@
 <title>메일링 리스트 확인</title>
 </head>
 <body>
-	<h1>메일링 리스트</h1>
+	<h1>메일링 리스트(Model 2)</h1>
 	
 	<%	// DAO 불러오기
 	EmailDao dao = new EmailDaoOrcImpl();
