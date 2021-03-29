@@ -1,20 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Servlet 연습</title>
-</head>
-<body>
-	<h1>Hello Web World</h1>
-	<!-- <h3>Static HTML Page</h3>
-	<p>이것은 정적 HTML로 만들어진 페이지입니다.</p>-->
-	
-	<ul>
-		<li><a href="<%= request.getContextPath() %>/users?a=joinform">회원가입</a></li>
-	</ul>
-	
+
+<!-- 다른 페이지의 파일을 포함 -->
+<!-- include: 별도의 서블릿이 아니라 본 jsp 내에 포함되어 컴파일된다. -->
+<%@ include file = "/WEB-INF/views/includes/header.jsp" %>
+<!-- jsp:include는 jsp에 포함하여 컴파일 하지 않고 별도의 서블릿(or jsp)에 요청 전달 -->
+<jsp:include page = "/WEB-INF/views/includes/nav.jsp" />
+
 	<!-- img 태그 : 그림삽입 -->
 	<!-- src: d이미지의 위치, alt: 대체 텍스트 -->
 	<img src="images/pengsoo.jpg" 
@@ -65,5 +57,6 @@
 	<p>
 		<a href="el">이메일리스트(MVC)</a>
 	</p>
-</body>
-</html>
+	
+<%@ include file = "/WEB-INF/views/includes/footer.jsp" %>
+	
