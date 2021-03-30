@@ -34,7 +34,7 @@
 				<form action="<c:url value="/el"/>">
 					<input type="hidden" name="a" value="delete" />
 					<!-- 게시물의 no(PK) -->
-					<input type="hidden" name="no" value="<%= vo.getNo() %>"/>
+					<input type="hidden" name="no" value="${ vo.no }"/>
 					<!-- 전송 버튼 -->
 					<input type="submit" value="삭제" />
 				</form>
