@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,32 +12,26 @@
 </head>
 <body>
 	<h1>메일링 리스트(Model 2)</h1>
-	<%	//	컨트롤러에서 속성으로 추가해준 리스트 객체를 꺼내옵니다.
-	//	다운캐스팅 필요
-	List<EmailVo> list = (List<EmailVo>)request.getAttribute("list");
-	
-	//	루프
-	for (EmailVo vo: list) {
-	%>
+	<c:forEach items="${ list }" var="vo">
 
 		<!-- 정보 테이블 -->
 	<table border=1>
 		<tr>
 			<th>성</th>
-			<td><%= vo.getLastName() %></td>
+			<td>${ vo.lastName }</td>
 		</tr>
 		<tr>
 			<th>이름</th>
-			<td><%= vo.getFirstName() %></td>
+			<td>${ vo.firstName }</td>
 		</tr>
 		<tr>
 			<th>이메일</th>
-			<td><%= vo.getEmail() %></td>
+			<td>${ vo.email }</td>
 		</tr>
 		<!-- 삭제 버튼 -->
 		<tr>
 			<td colspan="2">
-				<form action="<%= request.getContextPath() %>/el">
+				<form action="<c:url value="/el"/>">
 					<input type="hidden" name="a" value="delete" />
 					<!-- 게시물의 no(PK) -->
 					<input type="hidden" name="no" value="<%= vo.getNo() %>"/>
@@ -47,11 +43,9 @@
 		</tr>
 	</table>		
 	
-	<%
-	}
-	%>
+	</c:forEach>
 	<p>
-		<a href="<%= request.getContextPath() %>/el?a=form">메일링 리스트 가입(MVC)</a>
+		<a href="<c:url value ="/el?a=form"/>">메일링 리스트 가입(MVC)</a>
 	</p>
 	
 </body>
